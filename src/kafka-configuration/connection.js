@@ -3,8 +3,8 @@ const { BROKERS, CONSUMER_GROUP_ID } = require('../config');
 
 const kafka = new Kafka({
     clientId: 'bigchaindb-consumer',
-    brokers: BROKERS
-    // brokers: ['localhost:9092']
+    // brokers: BROKERS
+    brokers: ['192.168.15.154:9092']
 });
 
 // Initialize producer and consumer

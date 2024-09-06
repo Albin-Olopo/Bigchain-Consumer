@@ -2,6 +2,7 @@ const { consumer, producer, connect, disconnect } = require('./kafka-configurati
 const { createTransaction } = require('./block-chain-configuration/services');
 const os = require('os');
 const { CONSUMER_TOPIC, PRODUCER_TOPIC } = require('./config');
+const connection = require('./block-chain-configuration/connection');
 
 let isConsuming = true;
 
@@ -37,7 +38,7 @@ async function runConsumer() {
                     console.log(`Received message: ${JSON.stringify(parsedMessage)} from topic: ${topic}, partition: ${partition}`);
                     
                     try {
-                        const result = await createTransaction(parsedMessage);
+                        const result = await createTransaction(parsedMessage,connection);
                         console.log('Transaction created successfully');
                         await sendResultToProducer(result);  // Send the result to Kafka producer
                     } catch (error) {
