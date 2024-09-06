@@ -31,12 +31,13 @@ async function createAsset(keyPair, assetData) {
 // Function to create and post a transaction
 async function createTransaction(assetData, connection) {
     try {
-        // const keyPair = await createKeypair();
-        // const signedTransaction = await createAsset(keyPair, assetData);
-        // const result = await connection.postTransactionCommit(signedTransaction);
+        const keyPair = await createKeypair();
+        const signedTransaction = await createAsset(keyPair, assetData);
+        const result = await connection.postTransactionCommit(signedTransaction);
 
         return {
-            assetData
+            result,
+            signedTransaction,
         };
     } catch (error) {
         console.error('Error creating transaction:', error);

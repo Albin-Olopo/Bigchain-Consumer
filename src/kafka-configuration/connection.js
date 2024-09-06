@@ -2,9 +2,9 @@ const { Kafka } = require('kafkajs');
 const { BROKERS, CONSUMER_GROUP_ID } = require('../config');
 
 const kafka = new Kafka({
-    clientId: 'rule-engine',
-    // brokers: BROKERS
-    brokers: ['localhost:9092']
+    clientId: 'bigchaindb-consumer',
+    brokers: BROKERS
+    // brokers: ['localhost:9092']
 });
 
 // Initialize producer and consumer
